@@ -29,9 +29,7 @@
       @hide-popup="networkEvent('hidePopup')"
       @start-stabilizing="networkEvent('startStabilizing')"
       @stabilization-progress="networkEvent('stabilizationProgress')"
-      @stabilization-iterations-done="
-        networkEvent('stabilizationIterationsDone')
-      "
+      @stabilization-iterations-done="networkEvent('stabilizationIterationsDone')"
       @stabilized="networkEvent('stabilized')"
       @resize="networkEvent('resize')"
       @init-redraw="networkEvent('initRedraw')"
@@ -64,7 +62,7 @@
       <p>
         Network events:
         <br />
-        {{ networkEvents }}
+        {{networkEvents}}
       </p>
     </div>
   </div>
@@ -76,39 +74,18 @@ import { Network } from "vue-vis-network";
 let defNodes = [
   { id: 1, label: "Node 1" },
   { id: 2, label: "Node 2" },
-  {
-    id: 3,
-    label: "Node 3. Picture clipped",
-    shape: "image",
-    image: "ups.png",
-    imagePadding: 4,
-    size: 25
-  },
-  {
-    id: 4,
-    label: "Node 4 with PNG picture",
-    shape: "image",
-    image: "ups.png",
-    imagePadding: { top: 10, right: 15, left: 15, bottom: 10 },
-    shapeProperties: { useImageSize: true }
-  },
-  {
-    id: 5,
-    label: "Node 5 with SVG picture",
-    shape: "image",
-    image: "device.svg",
-    imagePadding: 5,
-    shapeProperties: { useImageSize: true }
-  }
-];
+  { id: 3, label: "Node 3. Picture clipped", shape: "image", image: "ups.png", imagePadding:4, size: 25 },
+  { id: 4, label: "Node 4 with PNG picture", shape: "image", image: "ups.png", imagePadding:{ top: 10, right: 15, left: 15, bottom: 10}, shapeProperties: { useImageSize: true } },
+  { id: 5, label: "Node 5 with SVG picture", shape: "image", image: "device.svg", imagePadding:5, shapeProperties: { useImageSize: true } }
+]
 
 let defEdges = [
-  { id: 1, from: 1, to: 3 },
-  { id: 2, from: 1, to: 2 },
-  { id: 3, from: 2, to: 4 },
-  { id: 4, from: 2, to: 5 },
-  { id: 5, from: 3, to: 3 }
-];
+        { id: 1, from: 1, to: 3 },
+        { id: 2, from: 1, to: 2 },
+        { id: 3, from: 2, to: 4 },
+        { id: 4, from: 2, to: 5 },
+        { id: 5, from: 3, to: 3 }
+      ]
 
 export default {
   data: () => ({
@@ -119,22 +96,22 @@ export default {
       options: {
         nodes: {
           shape: "circle",
-          size: 24,
+          size:24,
           color: {
-            border: "grey",
-
+            border: 'grey',
+            
             highlight: {
-              border: "black",
-              background: "white"
+              border: 'black',
+              background: 'white'
             },
             hover: {
-              border: "orange",
-              background: "grey"
+              border: 'orange',
+              background: 'grey'
             }
           },
-          font: { color: "black" },
+          font:{color:'black'},
           shapeProperties: {
-            useBorderWithImage: true
+            useBorderWithImage:true
           }
         }
       }
@@ -143,28 +120,7 @@ export default {
   components: {
     Network
   },
-  async created() {
-    let app = this;
-    this.network.options.manipulation = {
-      initiallyActive: true,
-      //   addNode: async (node, callback) => { node.label = "" ; app.editNode(node, callback) },
-      //   editNode: async (node, callback) => { app.editNode(node, callback) },
-      //   addEdge: async (edge, callback) => { app.addEdge(edge, callback) },
-      //  editEdge: async (edge, callback) => { console.log(edge, callback) },
-      editEdge: {
-        editWithoutDrag: async (edge, callback) => {
-          app.editWithoutDrag(edge, callback);
-        }
-      }
-    };
-  },
   methods: {
-    editWithoutDrag(edge, cb) {
-      // eslint-disable-next-line
-          console.log(edge, cb);
-      //  this.networkEvents = JSON.stringify(edge);
-      //alert(cb);
-    },
     drawBg(ctx) {
       let mapBgWidth = document.getElementById("scream").width;
       let mapBgHeight = document.getElementById("scream").height;
