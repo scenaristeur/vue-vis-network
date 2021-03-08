@@ -1,6 +1,6 @@
 {
   "name": "vue-vis-network",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Vue2 component to integrate with vis-network",
   "main": "dist/vueVisNetwork.umd.js",
   "module": "dist/vueVisNetwork.common.js",
@@ -37,7 +37,8 @@
     "vis-util": "^5.0.2"
   },
   "peerDependencies": {
-    "vue": "~2.x"
+    "vue": "~2.x",
+    "vue-vis-network": "^1.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.2.0",
